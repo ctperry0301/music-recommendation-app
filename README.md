@@ -11,6 +11,9 @@
 
 ```export FLASK_ENV=development```
 
+## Before running the app
+1. Create a Data folder in the api directory
+2. Then, add train_triplets.txt into that folder
 
 ### To Run the Backend (From root)
 ```npm run start-api```
