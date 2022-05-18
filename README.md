@@ -3,6 +3,8 @@
 ## Run these commands from the root
 ```Pip install flask```
 
+```pip install flask-cors```
+
 ```Pip install dotenv```
 
 ```export FLASK_APP=api.py```
