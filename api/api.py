@@ -26,7 +26,7 @@ def get_song_recs():
 
   # Link to full dataset: http://millionsongdataset.com/tasteprofile/#desc
   # song_df_2 = pandas.read_table('sample_triplets_data_1')
-  song_df_2 = pandas.read_table('Data/train_triplets.txt')
+  song_df_2 = pandas.read_table('Data/25mb_train_triplets.txt')
   song_df_2.columns = ['user_id', 'song_id', 'listen_count']
 
   song_df = pandas.merge(song_df_1, song_df_2, on="song_id", how="right")
@@ -59,5 +59,5 @@ def get_song_recs():
   # songObj = pm.recommend(user_id)
   # print(songObj)
 
-  pm.get_similar_items(['U Smile - Justin Bieber'])
-  return pm.get_similar_items(['U Smile - Justin Bieber'])
+  im = Recommenders.item_similarity_recommender_py()
+  return im.get_similar_items(['U Smile - Justin Bieber'])

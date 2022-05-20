@@ -191,8 +191,11 @@ class item_similarity_recommender_py():
     
     #Get similar items to given items
     def get_similar_items(self, item_list):
+        print("item_list: ", item_list)
         
         user_songs = item_list
+
+        print("user_songs: ", user_songs)
         
         ######################################################
         #B. Get all unique items (songs) in the training data
