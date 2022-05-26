@@ -1,25 +1,19 @@
 import logo from './logo.svg';
 import { useEffect, useState } from 'react';
+import { ListGroup, Container, Row, Col } from 'react-bootstrap'; 
 import './App.css';
 
 function App() {
+  const [songRecs, setSongRecs] = useState();
+  const [currentSong, setCurrentSong] = useState('You Only Live Once');
 
-  const [time, setTime] = useState(0);
+  function alertClicked(song) {
+    console.log(`You clicked on ${song}`);
+  }
+
   useEffect(() => {
-    fetch('http://127.0.0.1:5000/time', {
-      headers : { 
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-       }
-    }).then(
-      res => res.json()).then(data => {
-          setTime(data.time)
-        });
-    console.log(time);
-    // get data from backend and return it here and put in songRecs
-  }, [])
-  
-  const [songRecs, setSongRecs] = useState(['']);
+    console.log('post-formatted-data: ', songRecs)
+  }, [songRecs])
   useEffect(() => {
     let headers = new Headers();
 
@@ -32,11 +26,18 @@ function App() {
     fetch('http://127.0.0.1:5000/songRecs', {
       method: 'GET',
       headers: headers
-    }).then(
-      res => res.json()).then(data => {
-          setSongRecs(data.songRecs)
-        });
-    console.log(songRecs);
+    }).then(res => res.json()).then(data => {
+          let songArr = [];
+          for (let step = 0; step < 10; step++) {
+            let songObj = { 
+              song: data.song[step],
+              score: data.score[step],
+            }
+            songArr.push(songObj)
+          }
+          console.log("pre-formatted data: ", data)
+          setSongRecs(songArr)
+        }).then(console.log(songRecs));
     // get data from backend and return it here and put in songRecs
   }, [])
   
@@ -44,9 +45,24 @@ function App() {
     <div className="App">
       <header className="App-header">
 
-        <p>Song Recs: {songRecs}</p>
-        <p>Time: {time}</p>
+        <div>
+          <h3 >Similar Songs to: {currentSong} </h3>
+          {songRecs ? 
+            <ListGroup className="list-group">
+              {songRecs.map(obj => 
+                <ListGroup.Item action onClick={alertClicked(obj.song)}>
+                  <Container>
+                    <Row>
+                      <Col>Song Name: {obj.song} </Col>
+                      <Col>Score: {obj.score} </Col>
+                    </Row>
 
+                  </Container>
+                </ListGroup.Item>
+              )}
+
+            </ListGroup>
+           : <div>Loading... </div>}</div>
       </header>
     </div>
   );

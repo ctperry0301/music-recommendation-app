@@ -55,6 +55,6 @@ def get_current_time():
 @app.route('/songRecs')
 def get_song_recs():
   print(" $ $ $ $ $ ")
-  print(pm.get_similar_items(['You Only Live Once']))
+  print(pm.get_similar_items(['You Only Live Once']).to_json())
   print(" $$ $  $$ $ ")
-  return "Works!"
+  return pm.get_similar_items(['You Only Live Once']).to_json()
