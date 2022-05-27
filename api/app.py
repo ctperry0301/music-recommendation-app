@@ -52,9 +52,9 @@ def create_model():
 def get_current_time():
   return {'time': time.time()}
 
-@app.route('/songRecs')
-def get_song_recs():
+@app.route('/songRecs/<currentSong>')
+def get_song_recs(currentSong):
   print(" $ $ $ $ $ ")
-  print(pm.get_similar_items(['You Only Live Once']).to_json())
+  print(pm.get_similar_items([currentSong]).to_json())
   print(" $$ $  $$ $ ")
-  return pm.get_similar_items(['You Only Live Once']).to_json()
+  return pm.get_similar_items([currentSong]).to_json()
