@@ -9,8 +9,19 @@ function SongComponent(props) {
 
   return (
     <div>
+          <h3>Recommending songs similar to: {props.currentSong}</h3>
           {props.songRecs ? 
             <ListGroup className="list-group">
+              <Container style={{border: '1px solid white', width: '100%'}}> 
+                    <Row>
+                      <Col>
+                        <h3>Song Name</h3>
+                        </Col>
+                      <Col>
+                        <h3>Score </h3>
+                      </Col>
+                    </Row>
+                  </Container>
               {props.songRecs.map((obj, index) => 
               <div>                        
                 <ListGroup.Item action>
@@ -21,8 +32,8 @@ function SongComponent(props) {
                     recommendMoreSongs(obj.song);
                   }}>
                     <Row>
-                      <Col>Song Name: {obj.song} </Col>
-                      <Col>Score: {obj.score} </Col>
+                      <Col>{obj.song} </Col>
+                      <Col>{obj.score} </Col>
                     </Row>
 
                   </Container>

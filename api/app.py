@@ -7,8 +7,11 @@ from flask import Flask
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
-cors = CORS(app)
+cors = CORS(app, supports_credentials=True)
+
 app.config['CORS_HEADERS'] = 'Content-Type'
+app.config['CORS_METHODS'] = "GET,POST,OPTIONS"
+
 
 # Step 1: Obtaining Data
 data_file = 'http://millionsongdataset.com/sites/default/files/AdditionalFiles/unique_tracks.txt'
