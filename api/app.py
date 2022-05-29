@@ -57,7 +57,11 @@ def get_current_time():
 
 @app.route('/songRecs/<currentSong>')
 def get_song_recs(currentSong):
-  print(" $ $ $ $ $ ")
-  print(pm.get_similar_items([currentSong]).to_json())
-  print(" $$ $  $$ $ ")
-  return pm.get_similar_items([currentSong]).to_json()
+  dataJson = json.loads(pm.get_similar_items([currentSong]).to_json())
+  artistObject = {}
+  for s in dataJson["song"]:
+    artistName = myDict[dataJson["song"][s]]
+    artistObject[s] = artistName
+  dataJson["artist"]  = artistObject
+
+  return dataJson

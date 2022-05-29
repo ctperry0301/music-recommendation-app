@@ -34,6 +34,7 @@ function App() {
             let songObj = { 
               song: data.song[step],
               score: data.score[step],
+              artist: data.artist[step],
             }
             songArr.push(songObj)
           }

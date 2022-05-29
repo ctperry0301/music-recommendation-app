@@ -18,6 +18,9 @@ function SongComponent(props) {
                         <h3>Song Name</h3>
                         </Col>
                       <Col>
+                        <h3>Artist </h3>
+                      </Col>
+                      <Col>
                         <h3>Score </h3>
                       </Col>
                     </Row>
@@ -33,6 +36,7 @@ function SongComponent(props) {
                   }}>
                     <Row>
                       <Col>{obj.song} </Col>
+                      <Col>{obj.artist} </Col>
                       <Col>{obj.score} </Col>
                     </Row>
 
